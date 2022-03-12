@@ -42,7 +42,7 @@ client.on('messageCreate', (message) => {
 });
 
 setInterval(() => {
-    connection.query(`SELECT * FROM servers`, (error, results, fields) => {
+    connection.query(`SELECT * FROM servers`, (error, results) => {
         if (error) console.error(error);
         console.log(results)
 
@@ -66,7 +66,7 @@ setInterval(() => {
     });
 }, 60000);
 
-client.login(process.env.token);
+client.login(process.env.TOKEN);
 
 function getRandomArbitrary(min, max) {
     return Math.random() * (max - min) + min;
@@ -74,11 +74,11 @@ function getRandomArbitrary(min, max) {
 
 function getQuestion(sId, callback) {
     // Get a random question.
-    connection.query(`SELECT * FROM questions ORDER BY RAND() LIMIT 1`, (qError, qResults, qFields) => {
+    connection.query(`SELECT * FROM questions ORDER BY RAND() LIMIT 1`, (qError, qResults) => {
         if(qError) throw qError;
 
         // Check if question has been asked before.
-        connection.query(`SELECT * FROM answered WHERE qId = ${qResults[0].qId} AND sId = "${sId}"`, (ansError, ansResults, ansFields) => {
+        connection.query(`SELECT * FROM answered WHERE qId = ${qResults[0].qId} AND sId = "${sId}"`, (ansError, ansResults) => {
             if(ansError) throw ansError;
 
             if(ansResults.length === 0) {
