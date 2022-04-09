@@ -51,8 +51,7 @@ setInterval(() => {
             const currentTime = date.getHours() + ':' + date.getMinutes();
             const setTime = row.time + ':0';
 
-            if(true) {
-            // if(currentTime === setTime) {
+            if(currentTime === setTime) {
                 getQuestion(row.sId, (question) => {
                     if(row.webhook == "1") {
                         console.log('webhook')
