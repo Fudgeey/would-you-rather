@@ -56,7 +56,7 @@ setInterval(() => {
                 getQuestion(row.sId, (question) => {
                     if(row.webhook == "1") {
                         console.log('webhook')
-                        const webhookClient = new Discord.WebhookClient({ url: 'https://discordapp.com/api/webhooks/962404276402008094/kiMAx6B9k3BKNsJ-z1aaK-xN6d_6uy9otx_rfdKqEaQm4TXZVbjJRMhR6fb0mHYPKHBd' });
+                        const webhookClient = new Discord.WebhookClient({ url: 'https://discord.com/api/webhooks/962404276402008094/kiMAx6B9k3BKNsJ-z1aaK-xN6d_6uy9otx_rfdKqEaQm4TXZVbjJRMhR6fb0mHYPKHBd' });
 
                         const embed = new Discord.MessageEmbed()
                             .setTitle('Would You Rather')
