@@ -53,13 +53,26 @@ setInterval(() => {
 
             if(currentTime === setTime) {
                 getQuestion(row.sId, (question) => {
-                    let channel = client.channels.cache.get(row.channel);
+                    if(row.webhook === 1) {
+                        const webhookClient = new Discord.WebhookClient({ url: 'https://discordapp.com/api/webhooks/962404276402008094/kiMAx6B9k3BKNsJ-z1aaK-xN6d_6uy9otx_rfdKqEaQm4TXZVbjJRMhR6fb0mHYPKHBd' });
 
-                    const embed = new Discord.MessageEmbed()
-                        .setTitle('Would You Rather')
-                        .setDescription(question.question);
+                        const embed = new Discord.MessageEmbed()
+                            .setTitle('Would You Rather')
+                            .setDescription(question.question);
 
-                    channel.send({embeds: [embed]});
+                        webhookClient.send({
+                            username: 'Would You Rather',
+                            embeds: [embed],
+                        });
+                    } else {
+                        let channel = client.channels.cache.get(row.channel);
+
+                        const embed = new Discord.MessageEmbed()
+                            .setTitle('Would You Rather')
+                            .setDescription(question.question);
+
+                        channel.send({embeds: [embed]});
+                    }
                 });
             }
         });
