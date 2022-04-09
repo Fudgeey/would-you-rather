@@ -53,7 +53,7 @@ setInterval(() => {
 
             if(currentTime === setTime) {
                 getQuestion(row.sId, (question) => {
-                    if(row.webhook === 1) {
+                    if(row.webhook === "1") {
                         const webhookClient = new Discord.WebhookClient({ url: 'https://discordapp.com/api/webhooks/962404276402008094/kiMAx6B9k3BKNsJ-z1aaK-xN6d_6uy9otx_rfdKqEaQm4TXZVbjJRMhR6fb0mHYPKHBd' });
 
                         const embed = new Discord.MessageEmbed()
