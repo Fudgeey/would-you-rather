@@ -83,7 +83,7 @@ setInterval(() => {
             }
         });
     });
-}, 30000);
+}, 60000);
 
 client.login(process.env.TOKEN);
 
