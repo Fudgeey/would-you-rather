@@ -51,7 +51,7 @@ setInterval(() => {
         console.log(`Current Time: ${currentTime}`);
 
         results.forEach((row) => {
-            const setTime = row.time + ':13';
+            const setTime = row.time + ':0';
 
             if(currentTime === setTime) {
                 getQuestion(row.sId, (question) => {
@@ -101,7 +101,7 @@ function getQuestion(sId, callback) {
             if(ansError) throw ansError;
 
             if(ansResults.length === 0) {
-                connection.query(`INSERT INTO answered (aId, qId, sId) VALUES (${getRandomArbitrary(0,9999)}, "${qResults[0].qId}", ${sId})`);
+                connection.query(`INSERT INTO answered (aId, qId, sId) VALUES (${getRandomArbitrary(0,9999)}, "${qResults[0].qId}", "${sId}")`);
 
                 return callback(qResults[0]);
             } else {
