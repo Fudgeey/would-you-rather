@@ -51,7 +51,7 @@ setInterval(() => {
         console.log(`Current Time: ${currentTime}`);
 
         results.forEach((row) => {
-            const setTime = row.time + ':0';
+            const setTime = row.time + ':13';
 
             if(currentTime === setTime) {
                 getQuestion(row.sId, (question) => {
