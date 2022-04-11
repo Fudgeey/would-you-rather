@@ -44,17 +44,20 @@ client.on('messageCreate', (message) => {
 setInterval(() => {
     connection.query(`SELECT * FROM servers`, (error, results) => {
         if (error) console.error(error);
-        console.log(results)
+
+        const date = new Date();
+        const currentTime = date.getHours() + ':' + date.getMinutes();
+
+        console.log(`Current Time: ${currentTime}`);
 
         results.forEach((row) => {
-            const date = new Date();
-            const currentTime = date.getHours() + ':' + date.getMinutes();
             const setTime = row.time + ':0';
 
             if(currentTime === setTime) {
                 getQuestion(row.sId, (question) => {
-                    if(row.webhook == "1") {
-                        console.log('webhook')
+                    if(row.webhook === "1") {
+                        console.log('Sending webhook.');
+
                         const webhookClient = new Discord.WebhookClient({ url: 'https://discord.com/api/webhooks/962404276402008094/kiMAx6B9k3BKNsJ-z1aaK-xN6d_6uy9otx_rfdKqEaQm4TXZVbjJRMhR6fb0mHYPKHBd' });
 
                         const embed = new Discord.MessageEmbed()
@@ -66,7 +69,8 @@ setInterval(() => {
                             embeds: [embed],
                         });
                     } else {
-                        console.log('not webhook')
+                        console.log('Sending message.');
+
                         let channel = client.channels.cache.get(row.channel);
 
                         const embed = new Discord.MessageEmbed()
@@ -79,7 +83,7 @@ setInterval(() => {
             }
         });
     });
-}, 60000);
+}, 30000);
 
 client.login(process.env.TOKEN);
 
